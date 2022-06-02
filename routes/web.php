@@ -18,3 +18,5 @@ Route::get('/',[PagesController::class,'home'])->name('root');
 Route::get('/welcome',[PagesController::class,'welcome'])->name('welcome');
 Route::get('/student/list',[StudentController::class,'list'])->name('student.list');
 Route::get('/student/details/{id}/{name}',[StudentController::class,'home'])->name('student.details');
+Route::get('/student/create',[StudentController::class,'create'])->name('student.create');
+Route::post('/student/create',[StudentController::class,'createSubmit'])->name('student.create.submit');
