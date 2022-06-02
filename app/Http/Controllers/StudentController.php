@@ -36,7 +36,7 @@ class StudentController extends Controller
     }
     function createSubmit(Request $req){
 
-        $req->validate([],[]);
+        //$req->validate([],[]);
         $this->validate($req,
              [
                 "name"=>"required|max:10",
