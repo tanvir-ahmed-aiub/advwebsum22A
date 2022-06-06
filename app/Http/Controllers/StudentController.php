@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Student;
 
 class StudentController extends Controller
 {
     function list(){
         //$students = array();
-        $students = array();
+        /*$students = array();
         for($i=1;$i<=10;$i++){
             $student = array(
                 "id"=>$i,
@@ -16,7 +17,13 @@ class StudentController extends Controller
                 "dob"=>"12.12.12"
             );
             $students[] = (object)$student;
-        }
+        }*/
+        $students = Student::all();
+        $students = Student::where('name','like','%faz%')
+                            
+                            ->select('dob','name','id')
+                            ->orderBy('name','desc')->get();
+        return $students;
 
         return view('students.list')
                ->with('students',$students);
@@ -51,6 +58,13 @@ class StudentController extends Controller
                  "name.max"=> "Name should not exceed 10 characters"
              ]
             );
+
+            $s1 = new Student();
+            $s1->st_id = $req->id;
+            $s1->name = $req->name;
+            $s1->dob = $req->dob;
+            $s1->email = $req->email;
+            $s1->save(); //insert query will run
 
         return "Submitted with valid value";
     }
